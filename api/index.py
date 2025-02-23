@@ -12,7 +12,7 @@ def home():
 def scrape_books():
     all_data = {}
 
-    for i in range(1, 11):
+    for i in range(1, 3):  # Use 2 pages for testing
         url = f"https://books.toscrape.com/catalogue/page-{i}.html"
         response = requests.get(url)
 
@@ -40,4 +40,4 @@ def scrape_books():
 
                     all_data[book_name] = {"description": book_description}
 
-    return all_data  # Return JSON response
+    return all_data
