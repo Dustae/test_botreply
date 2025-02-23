@@ -4,13 +4,16 @@ from bs4 import BeautifulSoup
 
 app = FastAPI()
 
+@app.get("/")
+def home():
+    return {"message": "Welcome to the Books Scraper API"}
+
 @app.get("/scrape")
 def scrape_books():
     all_data = {}
 
-    for i in range(1, 11):  # Loop through 10 pages
-        page = i
-        url = f"https://books.toscrape.com/catalogue/page-{page}.html"
+    for i in range(1, 11):
+        url = f"https://books.toscrape.com/catalogue/page-{i}.html"
         response = requests.get(url)
 
         if response.status_code == 200:
