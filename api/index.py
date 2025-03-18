@@ -167,8 +167,12 @@ def getdata_jbkk():
 
         # Append to result list
         jbkk_data.append(blog_data)
+        print("data " + str(i) + " success")
 
         # Delay between requests
-        time.sleep(10)
+        print("waiting for cooldown")
+        time.sleep(5)
+        print("cooldown success")
 
     return jbkk_data
+
