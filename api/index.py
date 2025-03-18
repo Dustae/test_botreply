@@ -51,7 +51,8 @@ def home():
 
 @app.get("/scrape")
 def getdata_jbkk():
-    origin_url = "https://jobbkk.com/%E0%B8%AB%E0%B8%B2%E0%B8%87%E0%B8%B2%E0%B8%99/%E0%B9%84%E0%B8%AD%E0%B8%97%E0%B8%B5,%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2%E0%B8%9D%E0%B8%B6%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99"
+    try:
+         origin_url = "https://jobbkk.com/%E0%B8%AB%E0%B8%B2%E0%B8%87%E0%B8%B2%E0%B8%99/%E0%B9%84%E0%B8%AD%E0%B8%97%E0%B8%B5,%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2%E0%B8%9D%E0%B8%B6%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99"
     data_amount = 5  # Default
     url = origin_url
     response = requests.get(url)
@@ -174,5 +175,10 @@ def getdata_jbkk():
         time.sleep(5)
         print("cooldown success")
 
-    return jbkk_data
+        return jbkk_data
+    except Exception as e:
+        print(f"Error: {e}")  # Print the actual error
+        return {"status": "error", "message": str(e)}
 
+
+   
