@@ -3,4 +3,3 @@ uvicorn
 beautifulsoup4
 requests
 time
-json
