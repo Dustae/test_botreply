@@ -44,6 +44,21 @@ keywords = {
     ]
 }
 
+def search_keywords(desc_data):
+    found_keywords = {}
+    
+    # Flatten the nested list and combine all the text into one list
+    flattened_data = [text for sublist in desc_data for text in sublist]
+    
+    # Loop over the categories and their associated keywords
+    for label, keyword_list in keywords.items():
+        matching_keywords = {kw for kw in keyword_list if any(kw.lower() in text.lower() for text in flattened_data)}
+        
+        # If a match is found, label it accordingly
+        if matching_keywords:
+            found_keywords[label] = matching_keywords
+            
+    return found_keywords
 
 @app.get("/")
 def home():
