@@ -172,10 +172,10 @@ def getdata_jbkk():
 
         # Delay between requests
         print("waiting for cooldown")
-        time.sleep(5)
+        # time.sleep(5)
         print("cooldown success")
 
-        return jbkk_data
+    return jbkk_data
     except Exception as e:
         print(f"Error: {e}")  # Print the actual error
         return {"status": "error", "message": str(e)}
