@@ -119,7 +119,6 @@ def home():
 @app.get("/dekf")
 def getdata_dekf():
     try:
-        def getdata_dekf():
         origin_url = "https://เด็กฝึกงาน.com"
         data_amount = 3 # defualt
 
