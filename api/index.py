@@ -245,8 +245,8 @@ def getdata_jobdb():
 
             # Check if the request was successful
             if response2.status_code != 200:            
-            print(f"Failed to retrieve content. Status code: {response2.status_code}")
-            return []
+                print(f"Failed to retrieve content. Status code: {response2.status_code}")
+                return []
             
             soup2 = BeautifulSoup(response2.text, "html.parser")
             
@@ -451,6 +451,7 @@ def getdata_toptk():
             # Check if the request was successful
             if response2.status_code != 200:
                 print(f"Failed to retrieve content. Status code: {response2.status_code}")
+                return []
             soup2 = BeautifulSoup(response2.text, "html.parser")
             
             title = soup2.find("h1", {"class": "font-medium text-sub-primary text-lg"}).text.strip()
