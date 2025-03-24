@@ -506,7 +506,7 @@ def getdata_toptk():
 def getdata_internth():
     try:
         origin_url = "https://internth.com"
-        data_amount = 2 # defualt
+        data_amount = 1 # defualt
         page = 1
         url = origin_url + "/job?jobGroupId=11&jobTypeId=1"
         # Send an HTTP GET request
