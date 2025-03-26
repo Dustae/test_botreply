@@ -192,8 +192,8 @@ def getdata_dekf():
             label_tags = {}
             label_tags = search_keywords(content)
             if not label_tags or label_tags == {}:
-                label_tags = {}
-                
+                label_tags =  None
+
             blog_data = {
                             "author": "InternHufSystem",
                             "title": title,
@@ -269,7 +269,7 @@ def getdata_jobdb():
             label_tags = {}
             label_tags = search_keywords(content)
             if not label_tags or label_tags == {}:
-                label_tags = {}
+                label_tags = None
             blog_data = {
                             "author": "InternHufSystem",
                             "title": title,
@@ -398,7 +398,7 @@ def getdata_jbkk():
             label_tags = {}
             label_tags = search_keywords(content)
             if not label_tags or label_tags == {}:
-                label_tags = {}
+                label_tags = None
 
             # Create structured job data
             blog_data = {
@@ -490,7 +490,7 @@ def getdata_toptk():
             label_tags = {}
             label_tags = search_keywords_th(content)
             if not label_tags or label_tags == {}:
-                label_tags = {}
+                label_tags = None
             blog_data = {
                             "author": "InternHufSystem",
                             "title": title,
@@ -597,7 +597,7 @@ def getdata_internth():
             label_tags = {}
             label_tags = search_keywords_th(content)
             if not label_tags or label_tags == {}:
-                label_tags = {}
+                label_tags = []
 
             blog_data = {
                             "author": "InternHufSystem",
