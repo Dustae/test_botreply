@@ -591,7 +591,7 @@ def getdata_internth():
                             "company_name": company_name,
                             "content": content,
                             "type": "auto_news",
-                            "tag": label_tags if label_tags else [],
+                            "tag": label_tags if label_tags else {},
                             "src_from": url2,
                             "banner_link": banner_link
                         }
