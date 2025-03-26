@@ -191,7 +191,9 @@ def getdata_dekf():
                     ]
             label_tags = {}
             label_tags = search_keywords(content)
-            
+            if not label_tags or label_tags == {}:
+                label_tags = {}
+                
             blog_data = {
                             "author": "InternHufSystem",
                             "title": title,
@@ -266,13 +268,15 @@ def getdata_jobdb():
             content = [desc_data]
             label_tags = {}
             label_tags = search_keywords(content)
+            if not label_tags or label_tags == {}:
+                label_tags = {}
             blog_data = {
                             "author": "InternHufSystem",
                             "title": title,
                             "company_name": company_name,
                             "content": content,
                             "type": "auto_news",
-                            "tag": label_tags if label_tags else {},
+                            "tag": label_tags ,
                             "src_from": url2,
                             "banner_link": None
                         }
@@ -393,6 +397,8 @@ def getdata_jbkk():
             # Get keyword labels
             label_tags = {}
             label_tags = search_keywords(content)
+            if not label_tags or label_tags == {}:
+                label_tags = {}
 
             # Create structured job data
             blog_data = {
@@ -401,7 +407,7 @@ def getdata_jbkk():
                 "company_name": company_name,
                 "content": content,
                 "type": "auto_news",
-                "tag": label_tags if label_tags else {} ,
+                "tag": label_tags,
                 "src_from": url2,
                 "banner_link": banner_link
             }
@@ -483,13 +489,15 @@ def getdata_toptk():
                     ]
             label_tags = {}
             label_tags = search_keywords_th(content)
+            if not label_tags or label_tags == {}:
+                label_tags = {}
             blog_data = {
                             "author": "InternHufSystem",
                             "title": title,
                             "company_name": company_name,
                             "content": content,
                             "type": "auto_news",
-                            "tag": label_tags if label_tags else {} ,
+                            "tag": label_tags ,
                             "src_from": url2,
                             "banner_link": banner_link
                         }
@@ -588,13 +596,16 @@ def getdata_internth():
                     ]
             label_tags = {}
             label_tags = search_keywords_th(content)
+            if not label_tags or label_tags == {}:
+                label_tags = {}
+
             blog_data = {
                             "author": "InternHufSystem",
                             "title": title,
                             "company_name": company_name,
                             "content": content,
                             "type": "auto_news",
-                            "tag": label_tags if label_tags else {},
+                            "tag": label_tags ,
                             "src_from": url2,
                             "banner_link": banner_link
                         }
