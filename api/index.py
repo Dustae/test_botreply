@@ -189,14 +189,16 @@ def getdata_dekf():
                         ["สวัสดิการ"] + benefit,
                         ["สถานที่ปฏิบัติงาน"] + [working_place]
                     ]
+            label_tags = {}
             label_tags = search_keywords(content)
+            
             blog_data = {
                             "author": "InternHufSystem",
                             "title": title,
                             "company_name": company_name,
                             "content": content,
                             "type": "auto_news",
-                            "tag": label_tags if label_tags else {},
+                            "tag": label_tags,
                             "src_from": url2,
                             "banner_link": banner_link
                         }
@@ -262,7 +264,7 @@ def getdata_jobdb():
             desc_data = [line.strip() for p in desc_texts for line in p.split("\n") if line.strip()]
 
             content = [desc_data]
-            
+            label_tags = {}
             label_tags = search_keywords(content)
             blog_data = {
                             "author": "InternHufSystem",
@@ -389,6 +391,7 @@ def getdata_jbkk():
             ]
 
             # Get keyword labels
+            label_tags = {}
             label_tags = search_keywords(content)
 
             # Create structured job data
@@ -478,7 +481,7 @@ def getdata_toptk():
                         ["สวัสดิการ"] + benf,
                         ["สถานที่ทำงาน"] + [working_place]
                     ]
-            
+            label_tags = {}
             label_tags = search_keywords_th(content)
             blog_data = {
                             "author": "InternHufSystem",
@@ -583,7 +586,7 @@ def getdata_internth():
                         ["สถานที่ทำงาน"] + [working_place],
                         ["เวลาทำงาน"] + [working_time]
                     ]
-            
+            label_tags = {}
             label_tags = search_keywords_th(content)
             blog_data = {
                             "author": "InternHufSystem",
