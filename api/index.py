@@ -196,7 +196,7 @@ def getdata_dekf():
                             "company_name": company_name,
                             "content": content,
                             "type": "auto_news",
-                            "tag": label_tags,
+                            "tag": label_tags if label_tags else [],
                             "src_from": url2,
                             "banner_link": banner_link
                         }
@@ -270,7 +270,7 @@ def getdata_jobdb():
                             "company_name": company_name,
                             "content": content,
                             "type": "auto_news",
-                            "tag": label_tags,
+                            "tag": label_tags if label_tags else [],
                             "src_from": url2,
                             "banner_link": None
                         }
@@ -398,7 +398,7 @@ def getdata_jbkk():
                 "company_name": company_name,
                 "content": content,
                 "type": "auto_news",
-                "tag": label_tags,
+                "tag": label_tags if label_tags else [] ,
                 "src_from": url2,
                 "banner_link": banner_link
             }
@@ -486,7 +486,7 @@ def getdata_toptk():
                             "company_name": company_name,
                             "content": content,
                             "type": "auto_news",
-                            "tag": label_tags,
+                            "tag": label_tags if label_tags else [] ,
                             "src_from": url2,
                             "banner_link": banner_link
                         }
@@ -591,7 +591,7 @@ def getdata_internth():
                             "company_name": company_name,
                             "content": content,
                             "type": "auto_news",
-                            "tag": label_tags,
+                            "tag": label_tags if label_tags else [],
                             "src_from": url2,
                             "banner_link": banner_link
                         }
