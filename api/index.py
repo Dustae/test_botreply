@@ -86,27 +86,26 @@ def search_keywords(desc_data):
     return found_keywords
 
 def search_keywords_th(desc_data):
-    found_keywords = []
+    found_keywords = {}
 
     # Flatten the nested list and combine all the text into one list
     flattened_data = [text for sublist in desc_data for text in sublist if isinstance(text, str)]  # Ensure text is a string
 
     # Loop over the categories and their associated keywords
     for label, keyword_list in keywords.items():
-        matching_keywords = [
+        matching_keywords = {
             kw for kw in keyword_list
             if any(
                 (kw.lower() in text.lower() if re.search(r'[a-zA-Z]', kw) else kw in text)
                 for text in flattened_data
             )
-        ]
+        }
 
-        # If a match is found, add the category label first, then the keywords
         if matching_keywords:
-            found_keywords.append(label)
-            found_keywords.extend(matching_keywords)
+            found_keywords[label] = matching_keywords
 
     return found_keywords
+
 def contains_thai_and_alnum(text):
     has_thai = bool(re.search(r'[\u0E00-\u0E7F]', text))  # Check for Thai characters
     has_alnum = bool(re.search(r'[a-zA-Z0-9]', text))  # Check for English letters or numbers
