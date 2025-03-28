@@ -8,64 +8,81 @@ import re
 app = FastAPI()
 
 keywords = {
-    "developer": [
-        "code", "web", "app", "backend", "back-end", "back", "frontend", "front-end", "front",
-        "fullstack", "full-stack", "full", "api", "microservices", "microservice", "cloud",
-        "devops", "dev", "ops", "software engineer", "backend developer", "frontend developer",
-        "full stack developer", "mobile developer", "app developer", "javascript developer",
-        "python developer", "java developer", "c# developer", "php developer", "go developer",
-        "node.js developer", "api development", "agile development", "continuous integration",
-        "software architecture", "นักพัฒนาซอฟต์แวร์", "นักพัฒนาเว็บ", "นักพัฒนาแอปพลิเคชัน",
-        "นักพัฒนาแบ็กเอนด์", "นักพัฒนาฟรอนต์เอนด์", "นักพัฒนาเต็มสแตก", "การพัฒนา api",
-        "ระบบไมโครเซอร์วิส", "การประมวลผลบนคลาวด์"
+    "Developer":  [
+        "developer", "software developer", "programmer", "engineer", "software engineer",
+        "full stack", "full-stack", "fullstack", "frontend", "front-end", "backend", "back-end",
+        "web development", "web app", "mobile development", "native app", "progressive web app",
+        "api development", "rest api", "graphql", "microservices", "cloud computing",
+        "devops", "agile development", "scrum", "continuous integration", "continuous deployment",
+        "javascript", "typescript", "python", "java", "c#", "go", "php", "ruby", "swift", "kotlin",
+        "node.js", "react", "vue.js", "angular", "django", "flask", "spring boot",
+        "containerization", "docker", "kubernetes", "ci/cd", "github actions", "jenkins",
+        "database", "sql", "nosql", "mongodb", "firebase", "postgresql", "mysql",
+        "software architecture", "system design", "algorithm", "data structure",
+        "นักพัฒนาซอฟต์แวร์", "โปรแกรมเมอร์", "นักพัฒนาเว็บ", "นักพัฒนาแอป", "วิศวกรซอฟต์แวร์"
     ],
-    "web_designer": [
-        "design", "webdesign", "web-design", "ui", "userinterface", "ux", "userexperience",
-        "graphic", "graphicdesign", "animation", "motiondesign", "color", "colorscheme",
-        "colorpalette", "font", "typography", "prototype", "prototyping", "interaction",
-        "interactivedesign", "trend", "designtrend", "web design", "ui/ux designer",
-        "graphic designer", "responsive design", "figma", "adobe xd", "wireframe", "user experience",
-        "user interface", "css animation", "design thinking", "html/css", "bootstrap",
-        "tailwind css", "web accessibility", "color theory", "นักออกแบบเว็บ", "นักออกแบบ ui/ux",
-        "กราฟิกดีไซน์", "การออกแบบโต้ตอบ", "ระบบดีไซน์", "สีและฟอนต์", "การออกแบบเพื่อการเข้าถึง",
-        "การออกแบบแอนิเมชัน", "เทรนด์การออกแบบ", "เครื่องมือออกแบบ"
+    "Designer": [
+        "design", "ui/ux", "ux design", "ui design", "user interface", "user experience",
+        "web design", "graphic design", "motion design", "animation", "interaction design",
+        "visual design", "brand identity", "typography", "color theory", "responsive design",
+        "wireframing", "prototyping", "figma", "adobe xd", "sketch", "illustrator", "photoshop",
+        "css animation", "front-end design", "css framework", "bootstrap", "tailwind css",
+        "design system", "web accessibility", "product design", "design thinking",
+        "นักออกแบบ", "นักออกแบบเว็บ", "นักออกแบบ ui/ux", "นักออกแบบกราฟิก", "ออกแบบแอนิเมชัน",
+        "การออกแบบประสบการณ์ผู้ใช้", "การออกแบบส่วนติดต่อผู้ใช้", "ดีไซน์"
     ],
-    "data_ai": [
-        "data", "ai", "artificialintelligence", "ml", "machinelearning", "bigdata",
-        "datascience", "sql", "mysql", "postgresql", "nosql", "mongodb", "firebase",
-        "analytics", "dataanalytics", "prediction", "predictivemodeling", "mining",
-        "datamining", "bi", "businessintelligence", "data engineer", "data scientist",
-        "data analyst", "ai engineer", "deep learning", "natural language processing",
-        "computer vision", "data warehousing", "data pipeline", "data visualization",
+    "Data & AI": [
+        "data science", "data engineer", "data analyst", "big data", "machine learning",
+        "deep learning", "artificial intelligence", "ai", "ml", "computer vision",
+        "natural language processing", "predictive modeling", "data mining",
+        "business intelligence", "data pipeline", "data warehousing", "data visualization",
         "neural networks", "reinforcement learning", "feature engineering",
-        "predictive analytics", "วิศวกรข้อมูล", "นักวิทยาศาสตร์ข้อมูล", "นักวิเคราะห์ข้อมูล",
-        "ปัญญาประดิษฐ์", "การเรียนรู้ของเครื่อง", "การวิเคราะห์ข้อมูลขนาดใหญ่",
-        "ระบบฐานข้อมูล", "การขุดข้อมูล", "การวิเคราะห์เชิงพยากรณ์", "ระบบแนะนำอัจฉริยะ"
+        "data preprocessing", "cloud data", "cloud analytics", "streaming data",
+        "sql", "mysql", "postgresql", "mongodb", "nosql", "firebase", "hadoop", "spark",
+        "tensorflow", "pytorch", "scikit-learn", "pandas", "numpy", "matplotlib",
+        "การวิเคราะห์ข้อมูล", "การเรียนรู้ของเครื่อง", "ปัญญาประดิษฐ์", "การขุดข้อมูล", 
+        "ระบบแนะนำอัจฉริยะ", "การวิเคราะห์เชิงพยากรณ์", "วิศวกรข้อมูล", "นักวิทยาศาสตร์ข้อมูล"
     ],
-    "security": [
-        "cyber", "cybersecurity", "hacking", "ethicalhacking", "malware", "virus", "spyware",
-        "network", "networksecurity", "encrypt", "encryption", "auth", "authentication",
-        "access", "accesscontrol", "firewall", "networkfirewall", "redteam", "red-team",
-        "blueteam", "blue-team", "security", "penetration testing", "malware analysis",
-        "threat intelligence", "vulnerability assessment", "security engineer", "cryptography",
-        "identity & access management", "security policy", "web security", "zero trust",
-        "cloud security", "endpoint protection", "security awareness", "security compliance",
-        "ความปลอดภัยทางไซเบอร์", "การทดสอบเจาะระบบ", "การป้องกันมัลแวร์",
-        "การรักษาความปลอดภัยเครือข่าย", "การเข้ารหัสข้อมูล", "ระบบยืนยันตัวตน",
-        "การจัดการสิทธิ์การเข้าถึง", "ระบบความปลอดภัยบนคลาวด์", "ทีมแดง ทีมฟ้า",
-        "การปฏิบัติตามมาตรฐานความปลอดภัย"
+    "Security": [
+        "cybersecurity", "hacking", "ethical hacking", "penetration testing",
+        "security engineer", "malware analysis", "ransomware", "firewall",
+        "network security", "application security", "web security", "api security",
+        "cloud security", "identity and access management", "zero trust",
+        "security compliance", "iso 27001", "gdpr", "pci dss", "data protection",
+        "vulnerability assessment", "threat intelligence", "incident response",
+        "cryptography", "encryption", "password management", "red team", "blue team",
+        "penetration tester", "security operations center", "phishing attack",
+        "multi-factor authentication", "api security", "การรักษาความปลอดภัยไซเบอร์",
+        "การเข้ารหัสข้อมูล", "การทดสอบเจาะระบบ", "การป้องกันมัลแวร์", "ความปลอดภัยเครือข่าย"
     ],
-    "qa_tester": [
-        "qa", "qualityassurance", "test", "testing", "automation", "automatedtesting",
-        "performance", "performancetest", "load", "loadtest", "bug", "debug", "bugfix",
-        "tdd", "testdrivendevelopment", "integration", "integrationtest", "quality assurance",
-        "software testing", "test automation", "manual testing", "performance testing",
-        "load testing", "security testing", "unit testing", "regression testing",
-        "test case", "bug tracking", "selenium", "junit", "cypress", "postman",
-        "api testing", "agile testing", "quality control", "การทดสอบซอฟต์แวร์",
-        "การตรวจสอบคุณภาพ", "การทดสอบอัตโนมัติ", "การทดสอบประสิทธิภาพ",
-        "การทดสอบโหลด", "ระบบติดตามข้อผิดพลาด", "การพัฒนาที่เน้นการทดสอบ",
-        "การทดสอบการทำงานร่วมกัน", "การทดสอบ api", "การประกันคุณภาพ"
+    "QA & Tester":  [
+        "quality assurance", "qa", "software testing", "test automation", "manual testing",
+        "performance testing", "load testing", "unit testing", "integration testing",
+        "regression testing", "functional testing", "security testing", "api testing",
+        "test-driven development", "tdd", "bdd", "selenium", "junit", "cypress", "postman",
+        "bug tracking", "test case", "continuous testing", "agile testing", "quality control",
+        "การทดสอบซอฟต์แวร์", "การประกันคุณภาพ", "การตรวจสอบคุณภาพ", "การทดสอบประสิทธิภาพ",
+        "การพัฒนาที่เน้นการทดสอบ", "การทดสอบโหลด", "การทดสอบความปลอดภัย"
+    ],
+    "Clound Management": [
+    "cloud", "cloud computing", "cloud management", "cloud infrastructure",
+    "cloud security", "cloud storage", "multi-cloud", "hybrid cloud",
+    "aws", "amazon web services", "azure", "microsoft azure", "gcp", "google cloud platform",
+    "kubernetes", "docker", "containerization", "orchestration",
+    "serverless", "lambda", "api gateway", "devops", "site reliability engineering",
+    "sre", "cloud automation", "terraform", "ansible", "cloudformation",
+    "cloud monitoring", "observability", "prometheus", "grafana", "log analytics",
+    "cost optimization", "autoscaling", "load balancing", "cdn",
+    "elastic compute", "vm", "virtual machine", "cloud networking",
+    "vpn", "vpc", "subnet", "firewall", "security group", "iam",
+    "identity and access management", "cloud compliance", "iso 27001",
+    "cloud-native", "cloud governance", "finops", "cloud billing",
+    "backup and disaster recovery", "dr", "high availability", "fault tolerance",
+    "kubernetes cluster", "helm", "openstack", "cloud sql", "cloud nosql",
+    "serverless functions", "microservices architecture", "cloud architecture",
+    "cloud engineer", "cloud administrator", "cloud consultant",
+    "นักบริหารคลาวด์", "การจัดการคลาวด์", "คลาวด์คอมพิวติ้ง", "เครือข่ายคลาวด์",
+    "ระบบจัดการทรัพยากรคลาวด์", "ระบบสำรองและกู้คืนข้อมูลคลาวด์", "การรักษาความปลอดภัยบนคลาวด์"
     ]
 }
 
@@ -191,6 +208,8 @@ def getdata_dekf():
                     ]
             label_tags = {}
             label_tags = search_keywords(content)
+            if not label_tags or label_tags == {}:
+                label_tags = {"NODATA": ""}
 
 
             blog_data = {
@@ -199,7 +218,7 @@ def getdata_dekf():
                             "company_name": company_name,
                             "content": content,
                             "type": "auto_news",
-                            "tag": label_tags,
+                            "tags": label_tags,
                             "src_from": url2,
                             "banner_link": banner_link
                         }
@@ -267,6 +286,8 @@ def getdata_jobdb():
             content = [desc_data]
             label_tags = {}
             label_tags = search_keywords(content)
+            if not label_tags or label_tags == {}:
+                label_tags = {"NODATA": ""}
     
             blog_data = {
                             "author": "InternHufSystem",
@@ -274,7 +295,7 @@ def getdata_jobdb():
                             "company_name": company_name,
                             "content": content,
                             "type": "auto_news",
-                            "tag": label_tags ,
+                            "tags": label_tags ,
                             "src_from": url2,
                             "banner_link": None
                         }
@@ -395,6 +416,8 @@ def getdata_jbkk():
             # Get keyword labels
             label_tags = {}
             label_tags = search_keywords(content)
+            if not label_tags or label_tags == {}:
+                label_tags = {"NODATA": ""}
 
 
             # Create structured job data
@@ -404,7 +427,7 @@ def getdata_jbkk():
                 "company_name": company_name,
                 "content": content,
                 "type": "auto_news",
-                "tag": label_tags,
+                "tags": label_tags,
                 "src_from": url2,
                 "banner_link": banner_link
             }
@@ -486,13 +509,17 @@ def getdata_toptk():
                     ]
             label_tags = {}
             label_tags = search_keywords_th(content)
+            if not label_tags or label_tags == {}:
+                label_tags = {"NODATA": ""}
+
+
             blog_data = {
                             "author": "InternHufSystem",
                             "title": title,
                             "company_name": company_name,
                             "content": content,
                             "type": "auto_news",
-                            "tag": label_tags ,
+                            "tags": label_tags ,
                             "src_from": url2,
                             "banner_link": banner_link
                         }
@@ -591,6 +618,8 @@ def getdata_internth():
                     ]
             label_tags = {}
             label_tags = search_keywords_th(content)
+            if not label_tags or label_tags == {}:
+                label_tags = {"NODATA": ""}
 
 
             blog_data = {
@@ -599,7 +628,7 @@ def getdata_internth():
                             "company_name": company_name,
                             "content": content,
                             "type": "auto_news",
-                            "tag": label_tags ,
+                            "tags": label_tags ,
                             "src_from": url2,
                             "banner_link": banner_link
                         }
